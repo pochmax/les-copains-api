@@ -23,10 +23,7 @@ exports.create = [
     .escape()
     .withMessage("Name must be specified."),
 
-  body("photo")
-    .optional()
-    .isLength({ min: 1 })
-    .escape(),
+  body("photo").optional().isLength({ min: 1 }).escape(),
 
   // Process Request
   (req, res, next) => {
@@ -35,10 +32,10 @@ exports.create = [
 
     // Create man object with escaped and trimmed data
     var sport = new Sport({
-        _id: req.body.id,
-        name: req.body.name,
-        desc: req.body.desc,
-        photo: req.body.photo,
+      _id: req.body.id,
+      name: req.body.name,
+      desc: req.body.desc,
+      photo: req.body.photo,
     });
 
     if (!errors.isEmpty()) {
@@ -69,9 +66,7 @@ exports.getById = [
     .trim()
     .isLength({ min: 1 })
     .escape()
-    .withMessage("Id must be specified.")
-    .isNumeric()
-    .withMessage("Id must be a number."),
+    .withMessage("Id must be specified."),
 
   (req, res, next) => {
     // Extract the validation errors from a request.
@@ -119,7 +114,7 @@ exports.delete = [
 
 // Update
 exports.update = [
-    body("id")
+  body("id")
     .trim()
     .isLength({ min: 1 })
     .escape()
@@ -137,10 +132,7 @@ exports.update = [
     .escape()
     .withMessage("Last name must be specified."),
 
-  body("photo")
-    .optional()
-    .isLength({ min: 1 })
-    .escape(),
+  body("photo").optional().isLength({ min: 1 }).escape(),
 
   (req, res, next) => {
     // Extract the validation errors from a request.
@@ -148,10 +140,10 @@ exports.update = [
 
     // Create man object with escaped and trimmed data
     var sport = new Sport({
-        _id: req.body.id,
-        name: req.body.name,
-        desc: req.body.desc,
-        photo: req.body.photo,
+      _id: req.body.id,
+      name: req.body.name,
+      desc: req.body.desc,
+      photo: req.body.photo,
     });
 
     if (!errors.isEmpty()) {
