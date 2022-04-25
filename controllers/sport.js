@@ -36,6 +36,8 @@ exports.create = [
       name: req.body.name,
       desc: req.body.desc,
       photo: req.body.photo,
+      men: req.body.men,
+      women: req.body.women,
     });
 
     if (!errors.isEmpty()) {
@@ -53,12 +55,15 @@ exports.create = [
 
 // Read
 exports.getAll = function (req, res, next) {
-  Sport.find().exec(function (err, result) {
-    if (err) {
-      return res.status(500).json(err);
-    }
-    return res.status(200).json(result);
-  });
+  Sport.find()
+    .populate("men")
+    .populate("women")
+    .exec(function (err, result) {
+      if (err) {
+        return res.status(500).json(err);
+      }
+      return res.status(200).json(result);
+    });
 };
 
 exports.getById = [
@@ -75,25 +80,28 @@ exports.getById = [
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     } else {
-      Sport.findById(req.params.id).exec(function (err, result) {
-        if (err) {
-          return res.status(500).json(err);
-        }
-        return res.status(200).json(result);
-      });
+      Sport.findById(req.params.id)
+        // .populate("men")
+        .populate("women")
+        .exec(function (err, result) {
+          if (err) {
+            return res.status(500).json(err);
+          }
+          return res.status(200).json(result);
+        });
     }
   },
 ];
 
 // Delete
 exports.delete = [
-  param("id")
-    .trim()
-    .isLength({ min: 1 })
-    .escape()
-    .withMessage("Id must be specified.")
-    .isNumeric()
-    .withMessage("Id must be a number."),
+  // param("id")
+  //   .trim()
+  //   .isLength({ min: 1 })
+  //   .escape()
+  //   .withMessage("Id must be specified.")
+  //   .isNumeric()
+  //   .withMessage("Id must be a number."),
 
   (req, res, next) => {
     // Extract the validation errors from a request.
@@ -114,13 +122,13 @@ exports.delete = [
 
 // Update
 exports.update = [
-  body("id")
-    .trim()
-    .isLength({ min: 1 })
-    .escape()
-    .withMessage("Id must be specified.")
-    .isNumeric()
-    .withMessage("Id must be a number."),
+  // body("id")
+  //   .trim()
+  //   .isLength({ min: 1 })
+  //   .escape()
+  //   .withMessage("Id must be specified.")
+  //   .isNumeric()
+  //   .withMessage("Id must be a number."),
 
   body("name")
     .isLength({ min: 1 })
@@ -144,6 +152,9 @@ exports.update = [
       name: req.body.name,
       desc: req.body.desc,
       photo: req.body.photo,
+
+      men: req.body.men,
+      women: req.body.women,
     });
 
     if (!errors.isEmpty()) {

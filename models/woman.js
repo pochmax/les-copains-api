@@ -2,29 +2,38 @@ var mongoose = require("mongoose");
 const { DateTime } = require("luxon");
 const sports = require("./sport.js");
 
-
 var formatDate = function () {
   return DateTime.fromJSDate(this.dateOfBirth).toISODate();
 };
-
-
 
 var womanSchema = new mongoose.Schema({
   // _id: { type: Number, required: true },
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  situation: { type: String, required: true, enum: ["En couple", "Celibataire"] },
+  situation: {
+    type: String,
+    required: true,
+    enum: ["En couple", "Celibataire"],
+  },
   photo: { type: String, required: true },
   dateOfBirth: {
     type: Date,
     required: true,
     transform: (x) => DateTime.fromJSDate(x).toISODate(),
   },
-  boyfriend: { type: mongoose.Schema.Types.ObjectId, ref: "men",required: false, unique: true },
-  sport: [{ 
-    type: mongoose.Schema.Types.ObjectId, ref :"sports",
-    required: false 
-  }],
+  boyfriend: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "men",
+    required: false,
+    default: null,
+  },
+  sport: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "sports",
+      required: false,
+    },
+  ],
 });
 
 womanSchema.set("toJSON", {
