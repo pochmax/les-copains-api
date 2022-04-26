@@ -83,6 +83,7 @@ exports.getById = [
       Sport.findById(req.params.id)
         // .populate("men")
         .populate("women")
+        .populate("men")
         .exec(function (err, result) {
           if (err) {
             return res.status(500).json(err);
