@@ -13,7 +13,7 @@ var womanSchema = new mongoose.Schema({
   situation: {
     type: String,
     required: true,
-    enum: ["En couple", "Celibataire"],
+    enum: ["En couple", "Célibataire"],
   },
   photo: { type: String, required: true },
   dateOfBirth: {
@@ -32,6 +32,7 @@ var womanSchema = new mongoose.Schema({
       type: mongoose.Schema.Types.ObjectId,
       ref: "sports",
       required: false,
+      default: null,
     },
   ],
 });
