@@ -17,7 +17,6 @@ var manSchema = new mongoose.Schema({
     required: true,
     enum: ["En couple", "Célibataire"],
   },
-  photo: { type: String, required: true },
   dateOfBirth: {
     type: Date,
     required: true,

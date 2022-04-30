@@ -23,8 +23,6 @@ exports.create = [
     .escape()
     .withMessage("Name must be specified."),
 
-  body("photo").optional().isLength({ min: 1 }).escape(),
-
   // Process Request
   (req, res, next) => {
     // Extract the validation errors from a request.
@@ -35,7 +33,6 @@ exports.create = [
       _id: req.body.id,
       name: req.body.name,
       desc: req.body.desc,
-      photo: req.body.photo,
       men: req.body.men,
       women: req.body.women,
     });
@@ -141,8 +138,6 @@ exports.update = [
     .escape()
     .withMessage("Last name must be specified."),
 
-  body("photo").optional().isLength({ min: 1 }).escape(),
-
   (req, res, next) => {
     // Extract the validation errors from a request.
     const errors = validationResult(req);
@@ -152,8 +147,6 @@ exports.update = [
       _id: req.body.id,
       name: req.body.name,
       desc: req.body.desc,
-      photo: req.body.photo,
-
       men: req.body.men,
       women: req.body.women,
     });

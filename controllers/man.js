@@ -32,12 +32,6 @@ exports.create = [
     .escape()
     .withMessage("Situation must be specified."),
 
-  body("photo")
-    .trim()
-    .isLength({ min: 1 })
-    .escape()
-    .withMessage("Situation must be specified."),
-
   body("girlfriend").optional(),
   //   .isLength({ min: 1 })
   //   .isObject()
@@ -65,7 +59,6 @@ exports.create = [
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       situation: req.body.situation,
-      photo: req.body.photo,
       dateOfBirth: req.body.dateOfBirth,
       girlfriend: req.body.girlfriend,
       sport: req.body.sport,
@@ -178,12 +171,6 @@ exports.update = [
     .escape()
     .withMessage("Situation must be specified."),
 
-  body("photo")
-    .trim()
-    .isLength({ min: 1 })
-    .escape()
-    .withMessage("Situation must be specified."),
-
   body("girlfriend").optional(),
   //   .isLength({ min: 1 })
   //   .isObject()
@@ -210,7 +197,6 @@ exports.update = [
       firstName: req.body.firstName,
       lastName: req.body.lastName,
       situation: req.body.situation,
-      photo: req.body.photo,
       dateOfBirth: req.body.dateOfBirth,
       girlfriend: req.body.girlfriend,
       sport: req.body.sport,

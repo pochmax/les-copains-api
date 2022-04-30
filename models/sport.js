@@ -4,7 +4,6 @@ var sportSchema = new mongoose.Schema({
   // _id: { type: Number, required: true },
   name: { type: String, required: true },
   desc: { type: String, required: true },
-  photo: { type: String, required: true },
 
   women: [
     {
